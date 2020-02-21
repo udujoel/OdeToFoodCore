@@ -5,15 +5,18 @@ namespace OdeToFoodCore
 {
     public class ListModel : PageModel
     {
+        private readonly IConfiguration _iConfiguration;
         public string Message { get; set; }
 
         public ListModel(IConfiguration iConfiguration)
         {
+            _iConfiguration = iConfiguration;
+
             Message = iConfiguration["message"];
         }
         public void OnGet()
         {
-            //            Message = "Hello world";
+            Message = _iConfiguration["message"];
 
         }
     }
