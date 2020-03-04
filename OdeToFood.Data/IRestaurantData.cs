@@ -8,7 +8,7 @@ namespace OdeToFood.Data
 {
     public interface IRestaurantData
     {
-        IEnumerable<Restaurant> GetAll();
+        IEnumerable<Restaurant> GetRestaurantsByName(string name);
     }
 
 
@@ -28,9 +28,9 @@ namespace OdeToFood.Data
             };
         }
         
-        public IEnumerable<Restaurant> GetAll()
+        public IEnumerable<Restaurant> GetRestaurantsByName(string name = null)
         {
-            return restaurants.OrderBy(x=>x.Name);
+            return restaurants.Where(x=>string.IsNullOrEmpty(name) || x.Name.StartsWith(name)).OrderBy(x=>x.Name);
 
         }
     }
