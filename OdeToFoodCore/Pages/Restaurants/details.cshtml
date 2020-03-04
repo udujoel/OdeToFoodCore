@@ -4,5 +4,48 @@
     ViewData["Title"] = "details";
 }
 
-<h1>details</h1>
+<h1>@Model.Restaurant.Name</h1>
 
+
+
+<div class = "container" >
+    <table class = "table table-responsive table-striped" >
+        <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Location
+            </th>
+            
+            <th>
+                Name
+            </th>
+            <th>
+                Couisine
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                @Model.Restaurant.Id
+            </td>
+            <td>
+                @Model.Restaurant.Location
+            </td>
+            <td>
+                @Model.Restaurant.Name
+               
+
+            </td>
+            <td>
+                @Model.Restaurant.Cuisine
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<a asp-page="./List" class="btn btn-default">Back to List</a>
