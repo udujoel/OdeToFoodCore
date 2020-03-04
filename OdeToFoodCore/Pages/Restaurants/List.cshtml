@@ -35,7 +35,7 @@
             <td> @restaurant.Cuisine</td>
             <td> @restaurant.Location</td>
             <td> <a class="btn btn-default" asp-page="./details" asp-route-restaurantid="@restaurant.Id" ><i class="glyphicon glyphicon-zoom-in"></i></a></td>
-            <td><a class="btn btn-default"> <i class="glyphicon glyphicon-edit"></i></a></td>
+            <td><a class="btn btn-default" asp-page="./edit" asp-route-restaurantid= "@restaurant.Id"> <i class="glyphicon glyphicon-edit"></i></a></td>
         </tr>
     }
 </table>
