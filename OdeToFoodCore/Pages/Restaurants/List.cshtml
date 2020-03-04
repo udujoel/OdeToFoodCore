@@ -7,6 +7,24 @@
 <h1>Restaurants</h1>
 <h1>@Model.Message</h1>
 
+<table class = "table table-hover table-striped" >
+    <tr>
+        <td>#</td>
+        <td>Name</td>
+        <td>Cuisine</td>
+        <td>Location</td>
+    </tr>
+    @foreach (var restaurant in Model.Restaurants)
+    {
+        <tr>
+            <td> @restaurant.Id</td>
+            <td> @restaurant.Name</td>
+            <td> @restaurant.Cuisine</td>
+            <td> @restaurant.Location</td>
+        </tr>
+    }
+</table>
+
 
 
 
