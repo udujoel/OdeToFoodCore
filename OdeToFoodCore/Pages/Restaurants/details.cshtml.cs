@@ -19,9 +19,18 @@ namespace OdeToFoodCore
             _restaurantData = restaurantData;
         }
 
-        public void OnGet(int restaurantid)
+        public IActionResult OnGet(int restaurantid)
         {
+            
+            
             Restaurant = _restaurantData.GetById(restaurantid);
+            if (Restaurant ==null)
+            {
+                return RedirectToPage("./notfound");
+
+            }
+            
+            return Page();
         }
     }
 }

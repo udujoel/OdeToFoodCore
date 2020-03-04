@@ -37,7 +37,7 @@ namespace OdeToFood.Data
 
         public Restaurant GetById(int id)
         {
-            return restaurants.Single(x=>x.Id==id);
+            return restaurants.SingleOrDefault(x=>x.Id ==id);
         }
     }
 }
