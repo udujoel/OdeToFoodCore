@@ -36,7 +36,12 @@ namespace OdeToFoodCore
 
         public IActionResult OnPost()
         {
-            var result = _restaurantData.Update(Restaurant);
+            if (ModelState.IsValid)
+            {
+                var result = _restaurantData.Update(Restaurant);
+                return Redirect("../List");
+            }
+
             return Page();
 
 
