@@ -22,13 +22,25 @@ namespace OdeToFoodCore
             _restaurantData = restaurantData;
             this.Cuisines = htmlHelper.GetEnumSelectList<CuisineType>();
         }
-        public IActionResult OnGet(int restaurantid)
-        {     
-            Restaurant = _restaurantData.GetById(restaurantid);
-            if (Restaurant == null)
+        public IActionResult OnGet(int? restaurantid)
+        {
+            if (restaurantid.HasValue)
             {
-                return RedirectToPage("./notfound");
+                Restaurant = _restaurantData.GetById((int) restaurantid);
+                if (Restaurant == null)
+                {
+                    return RedirectToPage("./notfound");
+                }
+
             }
+            else
+            {
+                Restaurant = new Restaurant();
+                
+            }
+
+
+           
 
 
             return Page();
@@ -36,13 +48,24 @@ namespace OdeToFoodCore
 
         public IActionResult OnPost()
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var result = _restaurantData.Update(Restaurant);
-                return Redirect("../List");
+                return Page();
+               
             }
 
-            return Page();
+            if (Restaurant.Id >0)
+            {
+                var result = _restaurantData.Update(Restaurant);
+                return RedirectToPage("details", new {restaurantid = Restaurant.Id});
+            }
+            
+                _restaurantData.Add(Restaurant);
+
+
+
+            return RedirectToPage("./list");
+
 
 
         }

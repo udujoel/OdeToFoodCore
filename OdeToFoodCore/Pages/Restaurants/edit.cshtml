@@ -1,10 +1,10 @@
-﻿@page "{restaurantid:int}"
+﻿@page "{restaurantid:int?}"
 @model OdeToFoodCore.editModel
 @{
     ViewData["Title"] = "edit";
 }
 
-<h2>Editing @Model.Restaurant.Name's details</h2>
+<h2>Editing details</h2>
 
 
 <form method = "post" >

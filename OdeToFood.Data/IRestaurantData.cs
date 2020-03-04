@@ -11,6 +11,7 @@ namespace OdeToFood.Data
         IEnumerable<Restaurant> GetRestaurantsByName(string name);
         Restaurant GetById(int id);
         Restaurant Update(Restaurant updatedRestaurant);
+        Restaurant Add(Restaurant newRestaurant);
     }
 
 
@@ -32,7 +33,7 @@ namespace OdeToFood.Data
         
         public IEnumerable<Restaurant> GetRestaurantsByName(string name = null)
         {
-            return restaurants.Where(x=>string.IsNullOrEmpty(name) || x.Name.StartsWith(name)).OrderBy(x=>x.Name);
+            return restaurants.Where(x=>string.IsNullOrEmpty(name) || x.Name.StartsWith(name)).OrderBy(x=>x.Id);
 
         }
 
@@ -54,6 +55,24 @@ namespace OdeToFood.Data
             return restaurant;
 
 
+        }
+
+        public Restaurant Add(Restaurant newRestaurant)
+        {
+            
+
+            if (newRestaurant != null)
+            {
+                restaurants.Add(new Restaurant()
+                {
+                    Cuisine = newRestaurant.Cuisine,
+                    Location = newRestaurant.Location,
+                    Name = newRestaurant.Name,
+                    Id = restaurants.Count +1
+                });
+            }
+
+            return newRestaurant;
         }
     }
 }
