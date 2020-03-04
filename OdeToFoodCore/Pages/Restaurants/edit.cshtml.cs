@@ -13,6 +13,8 @@ namespace OdeToFoodCore
     public class editModel : PageModel
     {
         private readonly IRestaurantData _restaurantData;
+       
+        [BindProperty]
         public Restaurant Restaurant { get; set; }
         public IEnumerable<SelectListItem> Cuisines { get; set; }
         public editModel(IRestaurantData restaurantData, IHtmlHelper htmlHelper)
@@ -28,9 +30,16 @@ namespace OdeToFoodCore
                 return RedirectToPage("./notfound");
             }
 
-//            Cuisines = Cuisines;
 
             return Page();
+        }
+
+        public IActionResult OnPost()
+        {
+            var result = _restaurantData.Update(Restaurant);
+            return Page();
+
+
         }
     }
 }

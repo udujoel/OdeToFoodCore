@@ -10,6 +10,7 @@ namespace OdeToFood.Data
     {
         IEnumerable<Restaurant> GetRestaurantsByName(string name);
         Restaurant GetById(int id);
+        Restaurant Update(Restaurant updatedRestaurant);
     }
 
 
@@ -38,6 +39,21 @@ namespace OdeToFood.Data
         public Restaurant GetById(int id)
         {
             return restaurants.SingleOrDefault(x=>x.Id ==id);
+        }
+
+        public Restaurant Update(Restaurant updatedRestaurant)
+        {
+            var restaurant = restaurants.SingleOrDefault(x => x.Id == updatedRestaurant.Id);
+            if (restaurant !=null)
+            {
+                restaurant.Cuisine = updatedRestaurant.Cuisine;
+                restaurant.Location = updatedRestaurant.Location;
+                restaurant.Name = updatedRestaurant.Name;
+            }
+
+            return restaurant;
+
+
         }
     }
 }
