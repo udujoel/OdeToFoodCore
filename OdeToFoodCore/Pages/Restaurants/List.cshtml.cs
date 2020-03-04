@@ -23,10 +23,10 @@ namespace OdeToFoodCore
             Message = iConfiguration["message"];
             
         }
-        public void OnGet()
+        public void OnGet(string searchTerm)
         {
             Message = _iConfiguration["message"];
-            Restaurants = _restaurantData.GetAll();
+            Restaurants = _restaurantData.GetRestaurantsByName(searchTerm);
 
 
         }
