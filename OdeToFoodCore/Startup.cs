@@ -20,6 +20,7 @@ namespace OdeToFoodCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+//            MvcOptions.EnableEndpointRouting = false;
             services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -30,7 +31,9 @@ namespace OdeToFoodCore
             });
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddRazorPages();
+            services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
